@@ -40,8 +40,8 @@ exclude = '''
 test-command = "pytest -nauto {project}/tests"
 test-extras = "test"
 # cp36: ancient
-# cp311: too many missing deps
 # pp39: no Pillow pp39 wheels yet - https://pypi.org/project/Pillow/#files
+build = "cp311-*"
 skip = ["cp36-*", "pp39-*", "*musllinux*", "pp*-manylinux*_aarch64"]
 test-skip = "*_arm64 *_universal2:arm64"
 
