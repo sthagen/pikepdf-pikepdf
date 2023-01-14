@@ -128,6 +128,7 @@ test-skip = "*_arm64 *_universal2:arm64"
 QPDF_MIN_VERSION = "11.1.0"
 QPDF_VERSION = "11.2.0"
 QPDF_PATTERN = "https://github.com/qpdf/qpdf/releases/download/vVERSION/qpdf-VERSION.tar.gz"
+CMAKE_OSX_ARCHITECTURES = "arm64;x86_64"
 
 [tool.cibuildwheel.linux]
 before-all = [
@@ -158,7 +159,11 @@ before-all = [
 
 [tool.cibuildwheel.macos]
 # Use workaround until https://github.com/actions/setup-python/issues/577 is fixed
-before-all = ["sh -c 'brew update || true'", "sh -c 'brew install qpdf little-cms2 || true'"]
+#before-all = ["sh -c 'brew update || true'", "sh -c 'brew install qpdf little-cms2 || true'"]
+before-all = [
+  "bash build-scripts/linux-download-qpdf.bash $QPDF_VERSION",
+  "bash build-scripts/linux-build-wheel-deps.bash"
+]
 
 [tool.cibuildwheel.windows]
 

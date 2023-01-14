@@ -110,9 +110,10 @@ jobs:
 
       - name: Build wheels
         uses: joerick/cibuildwheel@v2.11.4
+        env:
+          CIBW_ARCHS_MACOS: x86_64 arm64
+          CIBW_TEST_SKIP: "*_arm64 *_universal2:arm64"
 
-        #env:
-        #  CIBW_ARCHS_MACOS: x86_64 universal2 # for Apple Silicon
       - uses: actions/upload-artifact@v3
         with:
           name: wheels
